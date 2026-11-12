@@ -744,14 +744,8 @@
                 document.getElementById("landmarkCountText").innerText = `${numLandmarks}/478`;
                 document.getElementById("regLandmarkCount").innerText = `Landmarks: ${numLandmarks} / 478`;
 
-                if (showMesh) {
-                    drawConnectors(activeCtx, landmarks, FACEMESH_TESSELATION, { color: '#6366f140', lineWidth: 1 });
-                    drawConnectors(activeCtx, landmarks, FACEMESH_RIGHT_EYE, { color: '#38bdf8', lineWidth: 1.5 });
-                    drawConnectors(activeCtx, landmarks, FACEMESH_LEFT_EYE, { color: '#38bdf8', lineWidth: 1.5 });
-                    drawConnectors(activeCtx, landmarks, FACEMESH_LIPS, { color: '#34d399', lineWidth: 1.5 });
-                }
-
-            if (showPoints) {
+            // Titik-titik landmark hijau tanpa garis
+if (showPoints) {
     const width = activeCanvas.width;
     const height = activeCanvas.height;
 
@@ -759,22 +753,14 @@
 
     for (let i = 0; i < landmarks.length; i++) {
         const pt = landmarks[i];
-
         const x = pt.x * width;
         const y = pt.y * height;
 
-        // Efek cahaya luar
         activeCtx.beginPath();
-        activeCtx.arc(x, y, 3.2, 0, Math.PI * 2);
-        activeCtx.fillStyle = 'rgba(34, 211, 238, 0.18)';
-        activeCtx.fill();
-
-        // Titik inti
-        activeCtx.beginPath();
-        activeCtx.arc(x, y, 1.6, 0, Math.PI * 2);
-        activeCtx.fillStyle = '#67e8f9';
-        activeCtx.shadowColor = '#22d3ee';
-        activeCtx.shadowBlur = 7;
+        activeCtx.arc(x, y, 2, 0, Math.PI * 2);
+        activeCtx.fillStyle = '#00ff66';
+        activeCtx.shadowColor = '#00ff66';
+        activeCtx.shadowBlur = 5;
         activeCtx.fill();
     }
 
