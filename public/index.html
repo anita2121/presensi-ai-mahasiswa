@@ -751,13 +751,35 @@
                     drawConnectors(activeCtx, landmarks, FACEMESH_LIPS, { color: '#34d399', lineWidth: 1.5 });
                 }
 
-                if (showPoints) {
-                    activeCtx.fillStyle = '#67e8f9';
-                    for (let i = 0; i < landmarks.length; i++) {
-                        const pt = landmarks[i];
-                        activeCtx.fillRect(pt.x * activeCanvas.width, pt.y * activeCanvas.height, 1.5, 1.5);
-                    }
-                }
+            if (showPoints) {
+    const width = activeCanvas.width;
+    const height = activeCanvas.height;
+
+    activeCtx.save();
+
+    for (let i = 0; i < landmarks.length; i++) {
+        const pt = landmarks[i];
+
+        const x = pt.x * width;
+        const y = pt.y * height;
+
+        // Efek cahaya luar
+        activeCtx.beginPath();
+        activeCtx.arc(x, y, 3.2, 0, Math.PI * 2);
+        activeCtx.fillStyle = 'rgba(34, 211, 238, 0.18)';
+        activeCtx.fill();
+
+        // Titik inti
+        activeCtx.beginPath();
+        activeCtx.arc(x, y, 1.6, 0, Math.PI * 2);
+        activeCtx.fillStyle = '#67e8f9';
+        activeCtx.shadowColor = '#22d3ee';
+        activeCtx.shadowBlur = 7;
+        activeCtx.fill();
+    }
+
+    activeCtx.restore();
+}
 
                 if (currentTab === 'presensi') {
                     if (isAutoScan) {
